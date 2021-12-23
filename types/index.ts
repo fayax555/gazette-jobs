@@ -1,5 +1,7 @@
 export interface JobListItem {
+  isEnglish: boolean
   office: string
+  officeHref: string
   title: string
   url: string
   publishedDate: Date

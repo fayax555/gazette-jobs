@@ -45,7 +45,9 @@ const engToDv = {
 // a while ago
 
 const JobItem: FC<JobListItem> = ({
+  isEnglish,
   office,
+  officeHref,
   url,
   title,
   publishedDate,
@@ -56,11 +58,13 @@ const JobItem: FC<JobListItem> = ({
     .split(' ') as dayjsEngToDv
 
   return (
-    <Wrapper retracted={!!retracted}>
+    <Wrapper retracted={!!retracted} className={isEnglish ? 'en' : ''}>
       <div>
-        <span>{office}</span>{' '}
+        <Link href={`/?office=${officeHref}`}>
+          <a>{office}</a>
+        </Link>{' '}
         <span>
-          {number} {engToDv[word]} ކުރިން
+          {number} {isEnglish ? `${word} ago` : `${engToDv[word]} ކުރިން`}
         </span>
       </div>
       <Link href={`/${getIdFromUrl(url)}`}>
