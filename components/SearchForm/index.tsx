@@ -44,10 +44,7 @@ const SearchForm: FC<Props> = () => {
     e.preventDefault()
 
     router.push(`/?office=${searchText}`)
-    console.log('submit')
   }
-
-  console.log(searchText)
 
   useEffect(() => {
     setText((router.query.office as string) || '')

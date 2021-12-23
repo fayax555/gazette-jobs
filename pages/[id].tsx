@@ -42,8 +42,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     getIdFromUrl(url)
   )
 
-  console.log(ids)
-
   const paths = ids.map((id: string) => ({ params: { id } }))
 
   return {
