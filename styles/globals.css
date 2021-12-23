@@ -3,6 +3,11 @@
   src: url('./mv_faseyha.ttf');
 }
 
+@font-face {
+  font-family: Faruma;
+  src: url('./Faruma.ttf');
+}
+
 body {
   font-family: mvfaseyha !important;
   line-height: 1.7 !important;
