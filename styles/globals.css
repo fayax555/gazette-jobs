@@ -1,3 +1,13 @@
+@font-face {
+  font-family: mvfaseyha;
+  src: url('./mv_faseyha.ttf');
+}
+
+body {
+  font-family: mvfaseyha !important;
+  line-height: 1.7 !important;
+}
+
 a {
   color: inherit;
   text-decoration: none;

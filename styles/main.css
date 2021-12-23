@@ -1,16 +1,3 @@
-@font-face {
-  font-family: mv eamaan xp;
-  src: url('./MVEAMAANXP.TTF');
-}
-@font-face {
-  font-family: FarumaFont;
-  src: url('./Faruma.ttf');
-}
-@font-face {
-  font-family: mv faseyha;
-  src: url('./mv_faseyha.ttf');
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -20,10 +7,7 @@ html {
   overflow-y: scroll;
 }
 body {
-  font-family: mv faseyha, farumafont, faruma;
   direction: rtl;
-  font-size: 18px;
-  line-height: 30px;
   color: #000;
   unicode-bidi: embed;
   direction: rtl;
@@ -104,7 +88,6 @@ section.content {
 .iulaan-type-title {
   font-size: 26px !important;
   color: #000;
-  font-family: mv eamaan xp, mv faseyha, farumafont, faruma, thaana unicode akeh;
   line-height: 40px;
 }
 .gazette-filter {
@@ -157,7 +140,6 @@ a.gazette-title,
 .iulaan-title {
   font-size: 24px;
   color: #000;
-  font-family: mv eamaan xp, mv faseyha, farumafont, faruma, thaana unicode akeh;
   line-height: 36px !important;
 }
 .en a.gazette-title,
@@ -493,16 +475,4 @@ a.last-link span {
   .items-list {
     padding-right: 0;
   }
-}
-.pagination > li:first-child > a,
-.pagination > li:first-child > span {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
-  padding: 6px 12px;
-}
-.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  padding: 6px 12px;
 }

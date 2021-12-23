@@ -14,23 +14,24 @@ const retractStyle = css<Retracted>`
 
 export const Wrapper = styled.div<Retracted>`
   border: 1px solid #888;
-  padding: 1.5rem;
+  padding: 2.5rem;
   border-radius: 0.5rem;
 
   > div {
     > span:nth-child(1) {
+      font-size: 1.75rem;
       ${retractStyle}
     }
 
     > span:nth-child(2) {
       color: ${({ retracted }) => (retracted ? '#ccc' : '#555')};
-      font-size: 0.8rem;
+      font-size: 1.25rem;
     }
   }
 
   > a {
-    font-size: 1.3rem;
-    padding-top: 1em;
+    font-size: 2.25rem;
+    padding-top: 0.75em;
     display: block;
     ${retractStyle}
 

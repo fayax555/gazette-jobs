@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   padding: 0.75rem;
 
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
 `
 
 interface Props {
