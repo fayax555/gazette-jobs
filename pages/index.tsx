@@ -43,11 +43,10 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
 
   listToSearch = filteredJobList
 
+  // return multiple office names that matches the search keyword instead of just returning the first one matched
   const filteredJobListDv = jobList.filter(({ officeHref }) =>
-    officeHref.includes(getOfficeName()[0])
+    getOfficeName().includes(officeHref)
   )
-
-  console.log(filteredJobListDv)
 
   if (!query.office) {
     listToSearch = jobList
