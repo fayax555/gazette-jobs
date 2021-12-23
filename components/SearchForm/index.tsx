@@ -40,18 +40,17 @@ const SearchForm: FC<Props> = () => {
 
   const [searchText, setText] = useState('')
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    router.push(`/?office=${searchText}`)
-  }
-
   useEffect(() => {
     setText((router.query.office as string) || '')
   }, [router.query.office])
 
+  useEffect(() => {
+    router.push(searchText ? `/?office=${searchText}` : '')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchText])
+
   return (
-    <SearchFormWrap onSubmit={handleSubmit}>
+    <SearchFormWrap>
       <h2>Search</h2>
       <label htmlFor='office'>Office</label>
       <input
@@ -60,7 +59,6 @@ const SearchForm: FC<Props> = () => {
         value={searchText}
         onChange={(e) => setText(e.target.value)}
       />
-      <button>Search</button>
     </SearchFormWrap>
   )
 }

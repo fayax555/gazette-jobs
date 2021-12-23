@@ -61,14 +61,14 @@ const JobItem: FC<JobListItem> = ({
     <Wrapper retracted={!!retracted} className={isEnglish ? 'en' : ''}>
       <div>
         <Link href={`/?office=${officeHref}`}>
-          <a>{office}</a>
+          <a title='view more from this office'>{office}</a>
         </Link>{' '}
         <span>
           {number} {isEnglish ? `${word} ago` : `${engToDv[word]} ކުރިން`}
         </span>
       </div>
       <Link href={`/${getIdFromUrl(url)}`}>
-        <a>{title}</a>
+        <a title='view details'>{title}</a>
       </Link>
       {retracted && <p className='retracted'>{retracted}</p>}
     </Wrapper>
