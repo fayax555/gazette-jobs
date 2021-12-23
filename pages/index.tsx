@@ -1,8 +1,10 @@
 import type { NextPage, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { connectToDatabase } from 'utils/mongodb'
 import styled from 'styled-components'
 import JobItem from 'components/JobItem'
 import type { JobListItem } from 'types'
+import SearchForm from 'components/SearchForm'
 
 export const Wrapper = styled.div`
   max-width: 900px;
@@ -14,36 +16,26 @@ export const Wrapper = styled.div`
   gap: 2rem;
 `
 
-const Search = styled.div`
-  text-align: center;
-  border: 2px solid #0e65c9;
-  padding: 1rem;
-  height: 40rem;
-
-  input {
-    display: block;
-    padding: 0.75rem 1rem;
-    font-size: 1.5rem;
-    width: 100%;
-  }
-`
-
 interface Props {
   jobList: JobListItem[]
 }
 
 const Home: NextPage<Props> = ({ jobList }) => {
+  const { query } = useRouter()
+
+  // filter office
+  const filteredJobList = jobList.filter(
+    ({ officeHref }) => officeHref === query.office
+  )
+
   return (
     <Wrapper>
       <div>
-        {jobList.map((jobItem) => (
+        {(query.office ? filteredJobList : jobList).map((jobItem) => (
           <JobItem key={jobItem.url} {...jobItem} />
         ))}
       </div>
-      <Search>
-        <h2>Search</h2>
-        <input type='text' />
-      </Search>
+      <SearchForm />
     </Wrapper>
   )
 }
