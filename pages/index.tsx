@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import JobItem from 'components/JobItem'
 import type { JobListItem, OfficeName, Offices } from 'types'
 import SearchForm from 'components/SearchForm'
+import Link from 'next/link'
 
 export const Wrapper = styled.div`
   max-width: 900px;
@@ -57,14 +58,19 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
   }
 
   return (
-    <Wrapper>
-      <div>
-        {listToSearch?.map((jobItem) => (
-          <JobItem key={jobItem.url} {...jobItem} />
-        ))}
-      </div>
-      <SearchForm />
-    </Wrapper>
+    <>
+      <Link href=''>
+        <a>Home</a>
+      </Link>
+      <Wrapper>
+        <div>
+          {listToSearch?.map((jobItem) => (
+            <JobItem key={jobItem.url} {...jobItem} />
+          ))}
+        </div>
+        <SearchForm />
+      </Wrapper>
+    </>
   )
 }
 
