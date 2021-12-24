@@ -65,8 +65,19 @@ export const thaanaKeyboard = (target: EventTarget & HTMLInputElement) => {
     '}': '{',
   } as { [key: string]: string }
 
-  return target.value
+  let { selectionStart, selectionEnd } = target
+
+  selectionStart = 1
+  selectionEnd = 1
+  console.log({ selectionStart, selectionEnd })
+
+  const txt = target.value
     .split('')
     .map((char: string) => keyMap[char] || char)
     .join('')
+  console.log(target)
+
+  // console.log(txt)
+
+  return txt
 }
