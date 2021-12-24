@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect } from 'react'
+import { FC, useRef, useState, useEffect, ChangeEvent } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -103,23 +103,28 @@ const Thaana: FC<Props> = () => {
     }
   }, [pos])
 
+  const props = {
+    ref: inputRef,
+    type: 'text',
+    value: text,
+    dir: 'rtl',
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const txt = e.target.value
+      .split('')
+      .map((char: string) => keyMap[char] || char)
+      .join('')
+
+    setText(txt)
+
+    const p = e.target.selectionStart
+    if (p) setPos(p)
+  }
+
   return (
     <Wrapper>
-      <input
-        ref={inputRef}
-        type='text'
-        value={text}
-        onChange={({ target }) => {
-          const p = target.selectionStart
-          const txt = target.value
-            .split('')
-            .map((char: string) => keyMap[char] || char)
-            .join('')
-
-          setText(txt)
-          if (p) setPos(p)
-        }}
-      />
+      <input {...props} onChange={handleChange} />
     </Wrapper>
   )
 }
