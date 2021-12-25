@@ -66,19 +66,24 @@ const keyMap = {
   '}': '{',
 } as { [key: string]: string }
 
-const useThaanaInput = () => {
+interface propOptions {
+  spellCheck?: true | false
+  autoCapitalize?: 'none' | 'one' | 'words' | 'sentences' | 'characters'
+}
+
+const useThaanaInput = (options?: propOptions) => {
   const [value, setText] = useState('')
   const [pos, setPos] = useState(-1)
 
-  const inputRef = useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    // maintain cursor position
-    if (pos) inputRef.current?.setSelectionRange(pos, pos)
+    // maintain cursor position when char is inserted in middle of text
+    if (pos) ref.current?.setSelectionRange(pos, pos)
   }, [pos, value])
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // when the last character is deleted, the cursor should be at the beginning (pos = 0) instead of pos = 1
+    // maintain cursor position when last char is removed with backspace
     if (e.key === 'Backspace' && pos === 1) setPos(0)
   }
 
@@ -91,12 +96,16 @@ const useThaanaInput = () => {
     setText(txt)
 
     const p = e.target.selectionStart
-
     if (p) setPos(p)
   }
 
+  options = {
+    spellCheck: false,
+    autoCapitalize: 'none',
+  }
+
   return {
-    props: { onChange, onKeyDown, value, type: 'text', ref: inputRef },
+    props: { onChange, onKeyDown, value, ...options, ref, type: 'text' },
     setText,
   }
 }

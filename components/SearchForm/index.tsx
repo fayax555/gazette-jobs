@@ -12,7 +12,11 @@ interface Props {}
 const SearchForm: FC<Props> = () => {
   const router = useRouter()
 
-  const { props: dvOfficeProps, setText: setDvOffice } = useThaana()
+  const { props: dvOfficeProps, setText: setDvOffice } = useThaana({
+    autoCapitalize: 'sentences',
+    spellCheck: true,
+  })
+
   const { props: dvTitleProps, setText: setDvTitle } = useThaana()
 
   const [isDv, setIsDv] = useState(false)
@@ -61,20 +65,24 @@ const SearchForm: FC<Props> = () => {
         <strong> {isDv ? 'Dhivehi' : 'English'}</strong>
       </button>
       <h2>Search</h2>
-      <label htmlFor='office'>Office</label>
-      {isDv ? (
-        <input id='office' {...dvOfficeProps} />
-      ) : (
-        <input
-          dir='ltr'
-          id='office'
-          type='text'
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-      )}
-      <label htmlFor='title'>Job Title</label>
-      <input {...dvTitleProps} />
+      <label>
+        Office
+        {isDv ? (
+          <input autoCapitalize='' {...dvOfficeProps} />
+        ) : (
+          <input
+            dir='ltr'
+            type='text'
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        )}
+      </label>
+
+      <label>
+        Job Title
+        <input {...dvTitleProps} />
+      </label>
     </SearchFormWrap>
   )
 }

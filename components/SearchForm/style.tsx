@@ -8,13 +8,14 @@ export const SearchFormWrap = styled.section`
 
   label {
     margin-top: 1.75rem;
+    width: 100%;
   }
 
   input {
     display: block;
     padding: 0.75rem 1rem;
-    font-size: 1.5rem;
     width: 100%;
+    font-size: 1.5rem;
   }
 
   > button {
