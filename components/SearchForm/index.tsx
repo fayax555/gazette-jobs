@@ -28,7 +28,7 @@ const SearchForm: FC<Props> = () => {
     setSearchText(dvOfficeProps.value)
   }, [dvOfficeProps.value])
 
-  console.log(titleText)
+  // console.log(titleText)
 
   return (
     <SearchFormWrap>
@@ -44,7 +44,7 @@ const SearchForm: FC<Props> = () => {
       <h2>Search</h2>
       <label htmlFor='office'>Office</label>
       {isDv ? (
-        <input id='office' />
+        <input id='office' {...dvOfficeProps} />
       ) : (
         <input
           dir='ltr'

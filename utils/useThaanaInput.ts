@@ -68,18 +68,16 @@ const keyMap = {
 
 const useThaanaInput = () => {
   const [value, setText] = useState('')
-  const [pos, setPos] = useState(0)
+  const [pos, setPos] = useState(-1)
 
   const inputRef = useRef<HTMLInputElement>(null)
-
-  console.log(pos)
 
   useEffect(() => {
     if (pos) {
       // maintain cursor position
       inputRef.current?.setSelectionRange(pos, pos)
     }
-  }, [pos])
+  }, [pos, value])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const txt = e.target.value
@@ -94,7 +92,10 @@ const useThaanaInput = () => {
     if (p) setPos(p)
   }
 
-  return { props: { onChange, value, type: 'text', ref: inputRef }, setText }
+  return {
+    props: { onChange, value, type: 'text', ref: inputRef },
+    setText,
+  }
 }
 
 export default useThaanaInput
