@@ -7,7 +7,6 @@ import { JobBodyWrapper } from './style'
 const JobBody: FC<Listing> = ({ contentHtml }) => {
   return (
     <JobBodyWrapper>
-      <Link href={'/'}>Home</Link>
       <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </JobBodyWrapper>
   )

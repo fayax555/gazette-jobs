@@ -68,7 +68,6 @@ const SearchForm: FC<Props> = () => {
       >
         <strong> {isDv ? 'Dhivehi' : 'English'}</strong>
       </button>
-
       <h2>Search</h2>
       <label htmlFor='office'>Office</label>
       {isDv ? (
@@ -82,6 +81,8 @@ const SearchForm: FC<Props> = () => {
           onChange={(e) => setSearchText(e.target.value)}
         />
       )}
+      <label htmlFor=''>Job Title</label>
+      <input dir='ltr' type="text" />
     </SearchFormWrap>
   )
 }

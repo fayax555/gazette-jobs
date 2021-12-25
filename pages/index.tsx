@@ -58,19 +58,14 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
   }
 
   return (
-    <>
-      <Link href=''>
-        <a>Home</a>
-      </Link>
-      <Wrapper>
-        <div>
-          {listToSearch?.map((jobItem) => (
-            <JobItem key={jobItem.url} {...jobItem} />
-          ))}
-        </div>
-        <SearchForm />
-      </Wrapper>
-    </>
+    <Wrapper>
+      <div>
+        {listToSearch?.map((jobItem) => (
+          <JobItem key={jobItem.url} {...jobItem} />
+        ))}
+      </div>
+      <SearchForm />
+    </Wrapper>
   )
 }
 
