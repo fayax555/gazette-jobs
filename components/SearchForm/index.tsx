@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import useThaana from 'utils/useThaanaInput'
+import useThaana from 'utils/useThaana'
 import { SearchFormWrap } from './style'
 
 interface Props {}
@@ -8,35 +8,43 @@ interface Props {}
 const SearchForm: FC<Props> = () => {
   const router = useRouter()
 
-  const { props: dvOfficeProps, setText: setDvoffice } = useThaana()
+  const { props: dvOfficeProps, setText: setDvOffice } = useThaana()
   const { props: dvTitleProps, setText: setDvTitle } = useThaana()
 
   const [isDv, setIsDv] = useState(false)
   const [searchText, setSearchText] = useState('')
-  const [titleText, setTitleText] = useState('')
 
   useEffect(() => {
     setSearchText((router.query.office as string) || '')
   }, [router.query.office])
 
   useEffect(() => {
-    router.push(searchText ? `/?office=${searchText}` : '')
+    const title = dvTitleProps.value
+    const office = dvOfficeProps.value
+
+    const getQuery = () => {
+      if (searchText) return { ...router.query, office: searchText, title }
+      if (title || office) return { ...router.query, title, office }
+    }
+
+    router.push({ query: getQuery() })
+
+    // 'router' dep should not be included even if eslint is complaining
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText])
+  }, [dvOfficeProps.value, dvTitleProps.value, searchText])
 
   useEffect(() => {
     setSearchText(dvOfficeProps.value)
   }, [dvOfficeProps.value])
-
-  // console.log(titleText)
 
   return (
     <SearchFormWrap>
       <button
         onClick={() => {
           setIsDv(!isDv)
-          setDvoffice('')
+          setDvOffice('')
           setSearchText('')
+          setDvTitle('')
         }}
       >
         <strong> {isDv ? 'Dhivehi' : 'English'}</strong>
