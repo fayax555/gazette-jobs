@@ -1,48 +1,19 @@
 import { FC, useState, useEffect, FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
 import useThaana from 'utils/useThaanaInput'
-
-export const SearchFormWrap = styled.section`
-  text-align: center;
-  border: 2px solid #0e65c9;
-  padding: 1rem;
-  height: 40rem;
-
-  input {
-    display: block;
-    padding: 0.75rem 1rem;
-    font-size: 1.5rem;
-    width: 100%;
-  }
-
-  > button {
-    margin-top: 2rem;
-    display: block;
-    padding: 0.75rem 1rem;
-    font-size: 1.5rem;
-    width: 100%;
-    background: #0e65c9;
-    color: #fff;
-    border: none;
-    border-radius: 0.5rem;
-
-    &:hover {
-      background: #4b729e;
-      color: #fff;
-    }
-  }
-`
+import { SearchFormWrap } from './style'
 
 interface Props {}
 
 const SearchForm: FC<Props> = () => {
   const router = useRouter()
 
-  const { thaanaProps, setThaanaText } = useThaana()
+  const { props: dvOfficeProps, setText: setDvoffice } = useThaana()
+  const { props: dvTitleProps, setText: setDvTitle } = useThaana()
 
-  const [searchText, setSearchText] = useState('')
   const [isDv, setIsDv] = useState(false)
+  const [searchText, setSearchText] = useState('')
+  const [titleText, setTitleText] = useState('')
 
   useEffect(() => {
     setSearchText((router.query.office as string) || '')
@@ -54,15 +25,17 @@ const SearchForm: FC<Props> = () => {
   }, [searchText])
 
   useEffect(() => {
-    setSearchText(thaanaProps.value)
-  }, [thaanaProps.value])
+    setSearchText(dvOfficeProps.value)
+  }, [dvOfficeProps.value])
+
+  console.log(titleText)
 
   return (
     <SearchFormWrap>
       <button
         onClick={() => {
           setIsDv(!isDv)
-          setThaanaText('')
+          setDvoffice('')
           setSearchText('')
         }}
       >
@@ -71,7 +44,7 @@ const SearchForm: FC<Props> = () => {
       <h2>Search</h2>
       <label htmlFor='office'>Office</label>
       {isDv ? (
-        <input {...thaanaProps} />
+        <input id='office' />
       ) : (
         <input
           dir='ltr'
@@ -81,8 +54,8 @@ const SearchForm: FC<Props> = () => {
           onChange={(e) => setSearchText(e.target.value)}
         />
       )}
-      <label htmlFor=''>Job Title</label>
-      <input dir='ltr' type="text" />
+      <label htmlFor='title'>Job Title</label>
+      <input {...dvTitleProps} />
     </SearchFormWrap>
   )
 }

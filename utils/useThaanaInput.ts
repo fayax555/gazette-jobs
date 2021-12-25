@@ -67,10 +67,12 @@ const keyMap = {
 } as { [key: string]: string }
 
 const useThaanaInput = () => {
-  const [value, setThaanaText] = useState('')
+  const [value, setText] = useState('')
   const [pos, setPos] = useState(0)
 
   const inputRef = useRef<HTMLInputElement>(null)
+
+  console.log(pos)
 
   useEffect(() => {
     if (pos) {
@@ -85,13 +87,14 @@ const useThaanaInput = () => {
       .map((char: string) => keyMap[char] || char)
       .join('')
 
-    setThaanaText(txt)
+    setText(txt)
 
     const p = e.target.selectionStart
+
     if (p) setPos(p)
   }
 
-  return { thaanaProps: { onChange, value, type: 'text', ref: inputRef }, setThaanaText }
+  return { props: { onChange, value, type: 'text', ref: inputRef }, setText }
 }
 
 export default useThaanaInput
