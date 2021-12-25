@@ -66,12 +66,7 @@ const keyMap = {
   '}': '{',
 } as { [key: string]: string }
 
-interface propOptions {
-  spellCheck?: true | false
-  autoCapitalize?: 'none' | 'one' | 'words' | 'sentences' | 'characters'
-}
-
-const useThaanaInput = (options?: propOptions) => {
+const useThaanaInput = () => {
   const [value, setText] = useState('')
   const [pos, setPos] = useState(-1)
 
@@ -99,13 +94,14 @@ const useThaanaInput = (options?: propOptions) => {
     if (p) setPos(p)
   }
 
-  options = {
+  const attr = {
     spellCheck: false,
     autoCapitalize: 'none',
+    type: 'text',
   }
 
   return {
-    props: { onChange, onKeyDown, value, ...options, ref, type: 'text' },
+    props: { onChange, onKeyDown, value, ref, ...attr },
     setText,
   }
 }

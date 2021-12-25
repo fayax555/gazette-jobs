@@ -24,8 +24,6 @@ interface Props {
 const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
   const { query } = useRouter()
 
-  let listToSearch: JobListItem[]
-
   const getOfficeName = () => {
     const searchedOffices = []
 
@@ -42,25 +40,31 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
     officeHref.includes(String(query.office))
   )
 
-  listToSearch = filteredJobList
-
   // return multiple office names that matches the search keyword instead of just returning the first one matched
   const filteredJobListDv = jobList.filter(({ officeHref }) =>
     getOfficeName().includes(officeHref)
   )
 
-  if (!query.office) {
-    listToSearch = jobList
-  } else if (filteredJobList.length) {
-    listToSearch = filteredJobList
-  } else {
-    listToSearch = filteredJobListDv
+  // filter jobList by office
+  if (query.office) {
+    if (filteredJobList.length) {
+      jobList = filteredJobList
+    } else {
+      jobList = filteredJobListDv
+    }
+  }
+
+  // filter jobList by title
+  if (query.title) {
+    jobList = jobList.filter(({ title }) =>
+      title.includes(query.title as string)
+    )
   }
 
   return (
     <Wrapper>
       <div>
-        {listToSearch?.map((jobItem) => (
+        {jobList.map((jobItem) => (
           <JobItem key={jobItem.url} {...jobItem} />
         ))}
       </div>
