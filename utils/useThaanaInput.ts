@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react'
 
 const keyMap = {
   q: 'ް',
@@ -73,11 +73,14 @@ const useThaanaInput = () => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    if (pos) {
-      // maintain cursor position
-      inputRef.current?.setSelectionRange(pos, pos)
-    }
+    // maintain cursor position
+    if (pos) inputRef.current?.setSelectionRange(pos, pos)
   }, [pos, value])
+
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    // when the last character is deleted, the cursor should be at the beginning (pos = 0) instead of pos = 1
+    if (e.key === 'Backspace' && pos === 1) setPos(0)
+  }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const txt = e.target.value
@@ -93,7 +96,7 @@ const useThaanaInput = () => {
   }
 
   return {
-    props: { onChange, value, type: 'text', ref: inputRef },
+    props: { onChange, onKeyDown, value, type: 'text', ref: inputRef },
     setText,
   }
 }
