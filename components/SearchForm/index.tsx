@@ -3,6 +3,10 @@ import { useRouter } from 'next/router'
 import useThaana from 'utils/useThaana'
 import { SearchFormWrap } from './style'
 
+interface QueryObj {
+  [key: string]: string | undefined
+}
+
 interface Props {}
 
 const SearchForm: FC<Props> = () => {
@@ -22,16 +26,19 @@ const SearchForm: FC<Props> = () => {
     const title = dvTitleProps.value
     const office = dvOfficeProps.value
 
-    const getQuery = () => {
-      if (searchText && title) return { office: searchText, title }
-      if (office && title) return { office, title }
-      if (searchText) return { office: searchText }
-      if (office) return { office }
-      if (title) return { title }
+    const getQuery = (): QueryObj => {
+      if (searchText) return { ...router.query, office: searchText, title }
+      if (title || office) return { ...router.query, title, office }
       return {}
     }
 
-    router.push({ query: getQuery() })
+    const query: QueryObj = {}
+    // remove empty query params
+    for (const key in getQuery()) {
+      if (getQuery()[key]) query[key] = getQuery()[key]
+    }
+
+    router.push({ query })
 
     // 'router' dep should not be included even if eslint is complaining
     // eslint-disable-next-line react-hooks/exhaustive-deps
