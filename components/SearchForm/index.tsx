@@ -23,8 +23,12 @@ const SearchForm: FC<Props> = () => {
     const office = dvOfficeProps.value
 
     const getQuery = () => {
-      if (searchText) return { ...router.query, office: searchText, title }
-      if (title || office) return { ...router.query, title, office }
+      if (searchText && title) return { office: searchText, title }
+      if (office && title) return { office, title }
+      if (searchText) return { office: searchText }
+      if (office) return { office }
+      if (title) return { title }
+      return {}
     }
 
     router.push({ query: getQuery() })
