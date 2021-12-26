@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, FormEvent } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import useThaana from 'utils/useThaana'
 import { SearchFormWrap } from './style'

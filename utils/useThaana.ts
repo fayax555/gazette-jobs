@@ -77,18 +77,24 @@ const useThaanaInput = () => {
     if (pos) ref.current?.setSelectionRange(pos, pos)
   }, [pos, value])
 
-  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // maintain cursor position when last char is removed with backspace
-    if (e.key === 'Backspace' && pos === 1) setPos(0)
-  }
+  // const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  //   // maintain cursor position when last char is removed with backspace
+  //   if (e.key === 'Backspace' && pos === 1) setPos(0)
+  // }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const txt = e.target.value
+    const inputToThaana = e.target.value
       .split('')
       .map((char: string) => keyMap[char] || char)
       .join('')
 
-    setText(txt)
+    // Do not convert to thaana if the text is pasted from clipboard
+    // @ts-ignore
+    if (['insertFromPaste'].includes(e.nativeEvent.inputType)) {
+      setText(e.target.value)
+    } else {
+      setText(inputToThaana)
+    }
 
     const p = e.target.selectionStart
     if (p) setPos(p)
@@ -101,7 +107,7 @@ const useThaanaInput = () => {
   }
 
   return {
-    props: { onChange, onKeyDown, value, ref, ...attr },
+    props: { onChange, value, ref, ...attr },
     setText,
   }
 }

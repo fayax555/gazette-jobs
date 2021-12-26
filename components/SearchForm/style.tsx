@@ -4,10 +4,10 @@ export const SearchFormWrap = styled.section`
   text-align: center;
   border: 2px solid #0e65c9;
   padding: 1rem;
-  height: 40rem;
+  /* height: 32rem; */
 
   label {
-    margin-top: 1.75rem;
+    margin-top: 1rem;
     width: 100%;
   }
 

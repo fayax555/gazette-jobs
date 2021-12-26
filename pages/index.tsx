@@ -6,6 +6,8 @@ import JobItem from 'components/JobItem'
 import type { JobListItem, OfficeName, Offices } from 'types'
 import SearchForm from 'components/SearchForm'
 import Link from 'next/link'
+import BlackList from 'components/BlackList'
+import { useState } from 'react'
 
 export const Wrapper = styled.div`
   max-width: 900px;
@@ -23,6 +25,11 @@ interface Props {
 
 const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
   const { query } = useRouter()
+
+  const [blackList, setBlackList] = useState<string[]>([])
+
+  // remove blacklisted offices from jobList
+  jobList = jobList.filter((job) => !blackList.includes(job.office))
 
   const getOfficeName = () => {
     const searchedOffices = []
@@ -68,7 +75,10 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
           <JobItem key={jobItem.url} {...jobItem} />
         ))}
       </div>
-      <SearchForm />
+      <div>
+        <SearchForm />
+        <BlackList {...{ blackList, setBlackList, officeNames }} />
+      </div>
     </Wrapper>
   )
 }
