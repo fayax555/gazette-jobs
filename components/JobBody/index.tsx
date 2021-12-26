@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Link from 'next/link'
 import { FC } from 'react'
 import { Listing } from 'types'
 import { JobBodyWrapper } from './style'

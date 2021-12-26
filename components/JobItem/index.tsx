@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import { getIdFromUrl } from 'utils'
 import Link from 'next/link'
 import type { JobListItem } from 'types'
@@ -44,7 +44,11 @@ const engToDv = {
 // މީގެ އިރުކޮޅެއް ކުރިން
 // a while ago
 
-const JobItem: FC<JobListItem> = ({
+interface Props extends JobListItem {
+  setBlackList: Dispatch<SetStateAction<string[]>>
+}
+
+const JobItem: FC<Props> = ({
   isEnglish,
   office,
   officeHref,
@@ -52,6 +56,7 @@ const JobItem: FC<JobListItem> = ({
   title,
   publishedDate,
   retracted,
+  setBlackList,
 }) => {
   const [number, word] = dayjs(publishedDate)
     .fromNow()
@@ -60,6 +65,13 @@ const JobItem: FC<JobListItem> = ({
   return (
     <Wrapper retracted={!!retracted} className={isEnglish ? 'en' : ''}>
       <div>
+        <span
+          onClick={() => {
+            setBlackList((currList) => [...new Set([...currList, officeHref])])
+          }}
+        >
+          X
+        </span>{' '}
         <Link href={`/?office=${officeHref}`}>
           <a title='view more from this office'>{office}</a>
         </Link>{' '}

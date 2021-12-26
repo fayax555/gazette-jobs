@@ -58,7 +58,6 @@ const Index: FC<Props> = ({ officeNames, blackList, setBlackList }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // if(officeNames.includes(office))
     const officeNameList = Object.entries(officeNames).flat()
     const val = officeProps.value.toLocaleLowerCase().trim()
 
@@ -70,8 +69,6 @@ const Index: FC<Props> = ({ officeNames, blackList, setBlackList }) => {
     setBlackList([...new Set([...blackList, val])])
     setOffice('')
   }
-
-  console.log(blackList)
 
   return (
     <Wrapper>

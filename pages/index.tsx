@@ -30,6 +30,7 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
 
   // remove blacklisted offices from jobList
   jobList = jobList.filter((job) => !blackList.includes(job.office))
+  jobList = jobList.filter((job) => !blackList.includes(job.officeHref))
 
   const getOfficeName = () => {
     const searchedOffices = []
@@ -72,7 +73,7 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
     <Wrapper>
       <div>
         {jobList.map((jobItem) => (
-          <JobItem key={jobItem.url} {...jobItem} />
+          <JobItem key={jobItem.url} {...jobItem} {...{ setBlackList }} />
         ))}
       </div>
       <div>

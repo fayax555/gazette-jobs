@@ -21,7 +21,18 @@ export const Wrapper = styled.div<Retracted>`
       color: ${(p) => retractStyle(p, '#102d7c')};
     }
 
-    > span {
+    > span:first-child {
+      color: red;
+      font-weight: bold;
+      font-size: 2rem;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
+    > span:last-child {
       color: ${(p) => retractStyle(p, '#555')};
       font-size: 1.25rem;
     }
