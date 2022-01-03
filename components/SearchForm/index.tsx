@@ -12,10 +12,13 @@ interface Props {}
 const SearchForm: FC<Props> = () => {
   const router = useRouter()
 
-  const { props: dvOfficeProps, setText: setDvOffice } = useThaana()
+  const { props: dvOfficeProps, setText: setDvOffice } = useThaana({
+    dir: 'rtl',
+  })
+
   const { props: dvTitleProps, setText: setDvTitle } = useThaana()
 
-  const [isDv, setIsDv] = useState(false)
+  const [isDv, setIsDv] = useState(true)
   const [searchText, setSearchText] = useState('')
 
   useEffect(() => {

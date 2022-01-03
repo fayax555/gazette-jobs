@@ -66,7 +66,7 @@ const keyMap = {
   '}': '{',
 } as { [key: string]: string }
 
-const useThaanaInput = () => {
+const useThaanaInput = ({ dir = 'ltr' } = {}) => {
   const [value, setText] = useState('')
   const [pos, setPos] = useState(-1)
 
@@ -77,10 +77,10 @@ const useThaanaInput = () => {
     if (pos) ref.current?.setSelectionRange(pos, pos)
   }, [pos, value])
 
-  // const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-  //   // maintain cursor position when last char is removed with backspace
-  //   if (e.key === 'Backspace' && pos === 1) setPos(0)
-  // }
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    // maintain cursor position when last char is removed with backspace
+    if (e.key === 'Backspace' && pos === 1) setPos(0)
+  }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputToThaana = e.target.value
@@ -107,7 +107,7 @@ const useThaanaInput = () => {
   }
 
   return {
-    props: { onChange, value, ref, ...attr },
+    props: { onChange, onKeyDown, value, ref, ...attr, dir },
     setText,
   }
 }

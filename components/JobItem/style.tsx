@@ -15,10 +15,27 @@ export const Wrapper = styled.div<Retracted>`
   max-width: 55rem;
   margin-bottom: 1.5rem;
 
+  > a {
+    font-size: 1.75rem;
+    padding-top: 0.75em;
+    display: block;
+    color: ${retractStyle};
+
+    &:hover {
+      color: #161691;
+      text-decoration: underline;
+    }
+  }
+
   > div {
     > a {
       font-size: 1.5rem;
       color: ${(p) => retractStyle(p, '#102d7c')};
+    }
+
+    > span:last-child {
+      color: ${(p) => retractStyle(p, '#555')};
+      font-size: 1.25rem;
     }
 
     > span:first-child {
@@ -30,23 +47,6 @@ export const Wrapper = styled.div<Retracted>`
       &:hover {
         opacity: 0.6;
       }
-    }
-
-    > span:last-child {
-      color: ${(p) => retractStyle(p, '#555')};
-      font-size: 1.25rem;
-    }
-  }
-
-  > a {
-    font-size: 1.75rem;
-    padding-top: 0.75em;
-    display: block;
-    color: ${retractStyle};
-
-    &:hover {
-      color: #161691;
-      text-decoration: underline;
     }
   }
 
