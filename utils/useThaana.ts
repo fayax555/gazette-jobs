@@ -66,7 +66,7 @@ const keyMap = {
   '}': '{',
 } as { [key: string]: string }
 
-const useThaanaInput = ({ dir = 'ltr' } = {}) => {
+const useThaanaInput = () => {
   const [value, setText] = useState('')
   const [pos, setPos] = useState(-1)
 
@@ -104,10 +104,11 @@ const useThaanaInput = ({ dir = 'ltr' } = {}) => {
     spellCheck: false,
     autoCapitalize: 'none',
     type: 'text',
+    dir: 'rtl',
   }
 
   return {
-    props: { onChange, onKeyDown, value, ref, ...attr, dir },
+    props: { onChange, onKeyDown, value, ref, ...attr },
     setText,
   }
 }

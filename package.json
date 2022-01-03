@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "st": "next build && next start",
     "stylelint": "stylelint **/*.tsx **/*.css"
   },
   "dependencies": {

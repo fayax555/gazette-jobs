@@ -3,11 +3,12 @@ import { useRouter } from 'next/router'
 import { connectToDatabase } from 'utils/mongodb'
 import styled from 'styled-components'
 import JobItem from 'components/JobItem'
-import type { JobListItem, OfficeName, Offices } from 'types'
 import SearchForm from 'components/SearchForm'
 import Link from 'next/link'
 import BlackList from 'components/BlackList'
 import { useState } from 'react'
+import { useScrollRestoration } from 'utils/useScrollRestoration'
+import type { JobListItem, OfficeName, Offices } from 'types'
 
 export const Wrapper = styled.div`
   max-width: 900px;
@@ -24,7 +25,9 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
-  const { query } = useRouter()
+  const router = useRouter()
+  useScrollRestoration(router)
+  const { query } = router
 
   const [blackList, setBlackList] = useState<string[]>([])
 

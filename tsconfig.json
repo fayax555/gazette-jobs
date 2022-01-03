@@ -22,7 +22,7 @@
     "**/*.tsx",
     "utils/mongodb.ts",
     "utils/index.ts",
-    "pages/_document.js"
+    "pages/_document.tsx"
   ],
   "exclude": ["node_modules"]
 }

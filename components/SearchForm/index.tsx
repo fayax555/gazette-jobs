@@ -12,9 +12,7 @@ interface Props {}
 const SearchForm: FC<Props> = () => {
   const router = useRouter()
 
-  const { props: dvOfficeProps, setText: setDvOffice } = useThaana({
-    dir: 'rtl',
-  })
+  const { props: dvOfficeProps, setText: setDvOffice } = useThaana()
 
   const { props: dvTitleProps, setText: setDvTitle } = useThaana()
 
