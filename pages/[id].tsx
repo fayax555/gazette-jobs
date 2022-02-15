@@ -1,8 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { getIdFromUrl } from 'utils'
 import { connectToDatabase } from 'utils/mongodb'
+import { JobBody } from 'components'
 import type { Listing } from 'types'
-import JobBody from 'components/JobBody'
 
 interface Props {
   listing: Listing

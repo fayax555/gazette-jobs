@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import useThaana from 'utils/useThaana'
+import { useThaana } from 'utils'
 import { SearchFormWrap } from './style'
 
 interface QueryObj {

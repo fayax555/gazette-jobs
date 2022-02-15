@@ -1,6 +1,6 @@
 import { Dispatch, FC, FormEvent, SetStateAction, useState } from 'react'
 import styled from 'styled-components'
-import useThaana from 'utils/useThaana'
+import { useThaana } from 'utils'
 import type { OfficeName } from 'types'
 
 const Wrapper = styled.section`

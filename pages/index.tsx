@@ -1,13 +1,11 @@
+import { useState } from 'react'
 import type { NextPage, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { connectToDatabase } from 'utils/mongodb'
 import styled from 'styled-components'
-import JobItem from 'components/JobItem'
-import SearchForm from 'components/SearchForm'
-import Link from 'next/link'
-import BlackList from 'components/BlackList'
-import { useState } from 'react'
-import { useScrollRestoration } from 'utils/useScrollRestoration'
+import { JobItem, SearchForm, BlackList } from 'components'
+import { useScrollRestoration } from 'utils'
+import { connectToDatabase } from 'utils/mongodb'
+
 import type { JobListItem, OfficeName, Offices } from 'types'
 
 export const Wrapper = styled.div`

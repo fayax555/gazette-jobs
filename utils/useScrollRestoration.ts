@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import Router, { NextRouter } from 'next/router'
-
+import useLayoutEffect from './use-isomorphic-layout-effect'
 
 function saveScrollPos(asPath: string) {
   sessionStorage.setItem(
@@ -18,7 +17,7 @@ function restoreScrollPos(asPath: string) {
 }
 
 export function useScrollRestoration(router: NextRouter) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!('scrollRestoration' in window.history)) return
     let shouldScrollRestore = false
     window.history.scrollRestoration = 'manual'

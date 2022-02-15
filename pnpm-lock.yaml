@@ -14,6 +14,7 @@ specifiers:
   react-dom: 17.0.2
   styled-components: ^5.3.3
   typescript: 4.5.4
+  valtio: ^1.2.12
 
 dependencies:
   '@stitches/react': 1.2.6_react@17.0.2
@@ -23,6 +24,7 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+  valtio: 1.2.12_react@17.0.2
 
 devDependencies:
   '@types/node': 17.0.0
@@ -2566,6 +2568,10 @@ packages:
       react-is: 16.13.1
     dev: true
 
+  /proxy-compare/2.0.2:
+    resolution: {integrity: sha512-3qUXJBariEj3eO90M3Rgqq3+/P5Efl0t/dl9g/1uVzIQmO3M+ql4hvNH3mYdu8H+1zcKv07YvL55tsY74jmH1A==}
+    dev: false
+
   /public-encrypt/4.0.3:
     resolution: {integrity: sha512-zVpa8oKZSz5bTMTFClc1fQOnyyEzpl5ozpi1B5YcvBrdohMjH2rfsBtyXcuNuwjsDIXmBYlF2N5FlJYhR29t8Q==}
     dependencies:
@@ -3144,6 +3150,28 @@ packages:
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
+
+  /valtio/1.2.12_react@17.0.2:
+    resolution: {integrity: sha512-TlQkbSma4aAAgs6tQXrvGilMZBVH0q8gbbWxRbo2R43FhkW4lWi45f9jC6gAdJdC40bsNnYyBsYDB9OOKNlqSw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@babel/helper-module-imports': '>=7.12'
+      '@babel/types': '>=7.13'
+      babel-plugin-macros: '>=3.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@babel/helper-module-imports':
+        optional: true
+      '@babel/types':
+        optional: true
+      babel-plugin-macros:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      proxy-compare: 2.0.2
+      react: 17.0.2
+    dev: false
 
   /vm-browserify/1.1.2:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==}
