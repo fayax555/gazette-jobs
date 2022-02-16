@@ -1,6 +1,17 @@
 import Link from 'next/link'
-import { FC } from 'react'
 import styled from 'styled-components'
+
+interface Props {}
+
+const Navbar = () => {
+  return (
+    <Wrapper>
+      <Link href={'/'}>
+        <a>Home</a>
+      </Link>
+    </Wrapper>
+  )
+}
 
 const Wrapper = styled.div`
   max-width: 800px;
@@ -12,16 +23,4 @@ const Wrapper = styled.div`
   }
 `
 
-interface Props {}
-
-const Index: FC<Props> = () => {
-  return (
-    <Wrapper>
-      <Link href={'/'}>
-        <a>Home</a>
-      </Link>
-    </Wrapper>
-  )
-}
-
-export default Index
+export default Navbar

@@ -8,16 +8,6 @@ import { connectToDatabase } from 'utils/mongodb'
 
 import type { JobListItem, OfficeName, Offices } from 'types'
 
-export const Wrapper = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0.75rem;
-
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
-`
-
 interface Props {
   lists: { jobList: JobListItem[]; officeNames: OfficeName }
 }
@@ -84,6 +74,16 @@ const Home: NextPage<Props> = ({ lists: { jobList, officeNames } }) => {
     </Wrapper>
   )
 }
+
+export const Wrapper = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.75rem;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+`
 
 export const getStaticProps: GetStaticProps = async () => {
   const db = await connectToDatabase()

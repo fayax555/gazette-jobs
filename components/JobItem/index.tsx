@@ -48,7 +48,7 @@ interface Props extends JobListItem {
   setBlackList: Dispatch<SetStateAction<string[]>>
 }
 
-const JobItem: FC<Props> = ({
+const JobItem = ({
   isEnglish,
   office,
   officeHref,
@@ -57,7 +57,7 @@ const JobItem: FC<Props> = ({
   publishedDate,
   retracted,
   setBlackList,
-}) => {
+}: Props) => {
   const [number, word] = dayjs(publishedDate)
     .fromNow()
     .split(' ') as dayjsEngToDv

@@ -1,21 +1,17 @@
-import { FC, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useThaana } from 'utils'
-import { SearchFormWrap } from './style'
+import styled from 'styled-components'
 
 interface QueryObj {
-  [key: string]: string | undefined
+  [key: string]: string
 }
 
-interface Props {}
-
-const SearchForm: FC<Props> = () => {
+const SearchForm = () => {
   const router = useRouter()
 
   const { props: dvOfficeProps, setText: setDvOffice } = useThaana()
-
   const { props: dvTitleProps, setText: setDvTitle } = useThaana()
-
   const [isDv, setIsDv] = useState(true)
   const [searchText, setSearchText] = useState('')
 
@@ -83,5 +79,41 @@ const SearchForm: FC<Props> = () => {
     </SearchFormWrap>
   )
 }
+
+const SearchFormWrap = styled.section`
+  text-align: center;
+  border: 2px solid #0e65c9;
+  padding: 1rem;
+  /* height: 32rem; */
+
+  label {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  input {
+    display: block;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  > button {
+    margin-top: 2rem;
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 1.5rem;
+    width: 100%;
+    background: #0e65c9;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background: #4b729e;
+      color: #fff;
+    }
+  }
+`
 
 export default SearchForm

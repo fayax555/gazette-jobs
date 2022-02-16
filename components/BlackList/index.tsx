@@ -3,6 +3,52 @@ import styled from 'styled-components'
 import { useThaana } from 'utils'
 import type { OfficeName } from 'types'
 
+interface Props {
+  officeNames: OfficeName
+  blackList: string[]
+  setBlackList: Dispatch<SetStateAction<string[]>>
+}
+
+const BlackList = ({ officeNames, blackList, setBlackList }: Props) => {
+  const { props: officeProps, setText: setOffice } = useThaana()
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const officeNameList = Object.entries(officeNames).flat()
+    const val = officeProps.value.toLocaleLowerCase().trim()
+
+    if (!officeNameList.includes(val)) {
+      alert('Office does not exist')
+      return
+    }
+
+    setBlackList([...new Set([...blackList, val])])
+    setOffice('')
+  }
+
+  return (
+    <Wrapper>
+      <h3>BlackList Office</h3>
+      <BlackListedOffices>
+        <h4>Office Names</h4>
+        <ul>
+          {blackList.map((office) => (
+            <li key={office}>{office}</li>
+          ))}
+        </ul>
+      </BlackListedOffices>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Enter Office Name
+          <input {...officeProps} />
+        </label>
+        <button type='submit'>Add</button>
+      </form>
+    </Wrapper>
+  )
+}
+
 const Wrapper = styled.section`
   border: 2px solid #0e65c9;
   text-align: center;
@@ -46,50 +92,4 @@ const BlackListedOffices = styled.div`
   }
 `
 
-interface Props {
-  officeNames: OfficeName
-  blackList: string[]
-  setBlackList: Dispatch<SetStateAction<string[]>>
-}
-
-const Index: FC<Props> = ({ officeNames, blackList, setBlackList }) => {
-  const { props: officeProps, setText: setOffice } = useThaana()
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const officeNameList = Object.entries(officeNames).flat()
-    const val = officeProps.value.toLocaleLowerCase().trim()
-
-    if (!officeNameList.includes(val)) {
-      alert('Office does not exist')
-      return
-    }
-
-    setBlackList([...new Set([...blackList, val])])
-    setOffice('')
-  }
-
-  return (
-    <Wrapper>
-      <h3>BlackList Office</h3>
-      <BlackListedOffices>
-        <h4>Office Names</h4>
-        <ul>
-          {blackList.map((office) => (
-            <li key={office}>{office}</li>
-          ))}
-        </ul>
-      </BlackListedOffices>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Enter Office Name
-          <input {...officeProps} />
-        </label>
-        <button type='submit'>Add</button>
-      </form>
-    </Wrapper>
-  )
-}
-
-export default Index
+export default BlackList
